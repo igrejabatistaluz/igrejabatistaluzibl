@@ -1,0 +1,75 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <!-- Logo e Versículo -->
+      <div class="footer-section footer-about">
+        <div class="footer-logo">
+          <img 
+            src="assets/logo-circular-fundo-branco.png" 
+            alt="Logo Igreja Batista da Luz"
+            width="80"
+            height="80"
+          >
+          <h3>Igreja Batista da Luz</h3>
+        </div>
+        <div class="footer-verse">
+          <p class="verse-text">"{{ verse().text }}"</p>
+          <p class="verse-reference">{{ verse().reference }}</p>
+        </div>
+      </div>
+
+      <!-- Links Rápidos -->
+      <div class="footer-section footer-links">
+        <h4>{{ quickLinksLabel() }}</h4>
+        <ul>
+          @for (link of quickLinks(); track link.label) {
+            <li>
+              <a 
+                (click)="scrollToSection(link.section)"
+                role="button"
+                tabindex="0"
+                (keydown.enter)="scrollToSection(link.section)"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Redes Sociais -->
+      <div class="footer-section footer-social">
+        <h4>{{ followLabel() }}</h4>
+        <div class="social-links">
+          @for (social of socialMedia(); track social.name) {
+            <a 
+              [href]="social.url" 
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="social.ariaLabel"
+              class="social-link"
+            >
+              <span class="social-icon">{{ social.icon }}</span>
+              <span class="social-name">{{ social.name }}</span>
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p>
+        &copy; {{ currentYear }} Igreja Batista da Luz. {{ copyright() }}
+      </p>
+      <p class="footer-made-with">
+        {{ madeWith() }}
+      </p>
+      <p class="footer-developer">
+        Desenvolvido com ❤️ por
+        <span class="developer-link">Zerix</span>
+      </p>
+    </div>
+  </div>
+</footer>
+

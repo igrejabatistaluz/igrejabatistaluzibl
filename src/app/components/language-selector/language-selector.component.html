@@ -1,0 +1,28 @@
+<div class="language-selector" (clickOutside)="closeDropdown()">
+  <button 
+    class="language-button"
+    (click)="toggleDropdown()"
+    [attr.aria-expanded]="isOpen()"
+    aria-label="Selecionar idioma"
+  >
+    <span class="flag">{{ currentLanguage().flag }}</span>
+    <span class="language-code">{{ currentLanguage().code === 'pt-BR' ? 'PT' : 'EN' }}</span>
+    <span class="arrow" [class.rotated]="isOpen()">▼</span>
+  </button>
+
+  <ul class="language-dropdown" [class.active]="isOpen()">
+    @for (lang of languages; track lang.code) {
+      <li>
+        <button 
+          class="language-option"
+          [class.active]="lang.code === translationService.currentLang()"
+          (click)="selectLanguage(lang.code)"
+        >
+          <span class="flag">{{ lang.flag }}</span>
+          <span class="language-name">{{ lang.name }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+</div>
+

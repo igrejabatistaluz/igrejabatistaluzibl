@@ -1,0 +1,40 @@
+<section class="estudos-biblicos-page section">
+  <div class="container">
+    <div class="page-header">
+      <h1>Estudos Bíblicos</h1>
+      <p>Materiais de estudo para aprofundar seu conhecimento da Palavra de Deus</p>
+    </div>
+
+    <div class="estudos-grid">
+      @for (estudo of estudos(); track estudo.id) {
+        <article class="estudo-card card">
+          <div class="estudo-badge">{{ estudo.category }}</div>
+          
+          <div class="estudo-content">
+            <h2>{{ estudo.title }}</h2>
+            <p class="estudo-description">{{ estudo.description }}</p>
+            
+            <div class="estudo-meta">
+              <span class="estudo-duration">⏱️ {{ estudo.duration }}</span>
+              <span class="estudo-author">✍️ {{ estudo.author }}</span>
+            </div>
+          </div>
+
+          <div class="estudo-footer">
+            @if (estudo.pdfUrl) {
+              <a [href]="estudo.pdfUrl" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+                📄 Baixar PDF
+              </a>
+            }
+            @if (estudo.videoUrl) {
+              <a [href]="estudo.videoUrl" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                ▶️ Assistir Vídeo
+              </a>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+

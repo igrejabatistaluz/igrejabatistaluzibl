@@ -1,0 +1,59 @@
+<section class="plano-leitura-page section">
+  <div class="container">
+    <div class="page-header">
+      <h1>Plano de Leitura Bíblica</h1>
+      <p>Leia a Bíblia completa em um ano seguindo nosso plano diário</p>
+    </div>
+
+    <div class="plano-info card">
+      <h2>Como Funciona</h2>
+      <p>
+        Este plano de leitura foi desenvolvido para ajudá-lo a ler toda a Bíblia em 365 dias. 
+        Cada dia inclui leituras do Antigo e Novo Testamento, proporcionando uma visão completa 
+        da Palavra de Deus.
+      </p>
+      <div class="info-stats">
+        <div class="stat-item">
+          <span class="stat-number">365</span>
+          <span class="stat-label">Dias</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">66</span>
+          <span class="stat-label">Livros</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">1</span>
+          <span class="stat-label">Ano</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="leituras-grid">
+      @for (leitura of planoLeitura(); track leitura.dia) {
+        <article class="leitura-card card" [class.current-day]="leitura.dia === diaAtual()">
+          <div class="leitura-header">
+            <span class="leitura-dia">Dia {{ leitura.dia }}</span>
+            <span class="leitura-data">{{ leitura.data }}</span>
+          </div>
+          
+          <div class="leitura-content">
+            <h3>Leituras do Dia</h3>
+            <ul class="leitura-livros">
+              @for (livro of leitura.livros; track livro) {
+                <li>{{ livro }}</li>
+              }
+            </ul>
+            <p class="leitura-versiculos">{{ leitura.versiculos }}</p>
+          </div>
+
+          <div class="leitura-footer">
+            <button class="btn btn-outline" [class.btn-primary]="leitura.dia === diaAtual()">
+              Marcar como Lido
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+

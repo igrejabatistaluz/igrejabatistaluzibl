@@ -1,0 +1,49 @@
+<section class="about section" id="sobre">
+  <div class="container">
+    <div class="section-title">
+      <h2>{{ sectionTitle() }}</h2>
+      <p>{{ sectionSubtitle() }}</p>
+    </div>
+
+    <div class="about-content">
+      <!-- Tema do Ano -->
+      <div class="year-theme-card card">
+        <div class="year-theme-content">
+          <h3 class="year-theme-text">
+            {{ yearTheme() }}
+          </h3>
+        </div>
+      </div>
+
+      <!-- Missão e Visão -->
+      <div class="mission-vision">
+        <div class="card mission-card">
+          <div class="card-icon">🎯</div>
+          <h3>{{ mission().title }}</h3>
+          <p>{{ mission().description }}</p>
+        </div>
+
+        <div class="card vision-card">
+          <div class="card-icon">👁️</div>
+          <h3>{{ vision().title }}</h3>
+          <p>{{ vision().description }}</p>
+        </div>
+      </div>
+
+      <!-- Valores -->
+      <div class="values">
+        <h3 class="values-title">{{ translationService.translate('about.values.title') }}</h3>
+        <div class="values-grid">
+          @for (value of values(); track value.titleKey) {
+            <div class="card value-card">
+              <div class="value-icon">{{ value.icon }}</div>
+              <h4>{{ value.titleKey }}</h4>
+              <p>{{ getValueDescription(value.descriptionKey) }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,165 @@
+.about {
+  background: linear-gradient(to bottom, var(--color-white), #f8f9fa);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.year-theme-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-highlight));
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.year-theme-content {
+  position: relative;
+  z-index: 1;
+}
+
+.year-theme-year {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.year-theme-text {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+.mission-vision {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.mission-card,
+.vision-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-highlight));
+  }
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.mission-card,
+.vision-card {
+  h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+  }
+
+  p {
+    color: var(--color-text-light);
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+}
+
+.values {
+  .values-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--color-dark);
+    margin-bottom: 2.5rem;
+  }
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.value-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    border-top: 3px solid var(--color-primary);
+  }
+
+  .value-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  p {
+    color: var(--color-text-light);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+}
+

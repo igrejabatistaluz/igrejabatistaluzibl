@@ -1,0 +1,44 @@
+<section class="hero" id="home">
+  <div class="hero-background">
+    <div class="hero-gradient"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content fade-in-up">
+      <h1 class="hero-title">
+        {{ heroTitle() }} <span class="highlight">Igreja Batista da Luz</span>
+      </h1>
+      <p class="hero-subtitle">
+        {{ heroSubtitle() }}
+      </p>
+      <p class="hero-year-theme">
+        {{ heroYearTheme() }}
+      </p>
+      <div class="hero-actions">
+        <a 
+          class="btn btn-primary" 
+          (click)="scrollToContact()"
+          role="button"
+          tabindex="0"
+          (keydown.enter)="scrollToContact()"
+        >
+          {{ buttonVisit() }}
+        </a>
+        <a 
+          class="btn btn-outline" 
+          (click)="scrollToContact()"
+          role="button"
+          tabindex="0"
+          (keydown.enter)="scrollToContact()"
+        >
+          {{ buttonLearnMore() }}
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,60 Q300,20 600,60 T1200,60 L1200,120 L0,120 Z" fill="white"></path>
+    </svg>
+  </div>
+</section>
+

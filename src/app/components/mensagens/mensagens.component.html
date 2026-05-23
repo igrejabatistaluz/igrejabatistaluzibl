@@ -1,0 +1,46 @@
+<section class="mensagens-page section">
+  <div class="container">
+    <div class="page-header">
+      <h1>Mensagens</h1>
+      <p>Pregações e sermões para edificação e crescimento espiritual</p>
+    </div>
+
+    <div class="mensagens-grid">
+      @for (mensagem of mensagens(); track mensagem.id) {
+        <article class="mensagem-card card">
+          <div class="mensagem-thumbnail">
+            <img [src]="mensagem.thumbnail" [alt]="mensagem.title" loading="lazy">
+            <div class="play-overlay">
+              <span class="play-icon">▶️</span>
+            </div>
+          </div>
+          
+          <div class="mensagem-content">
+            <div class="mensagem-meta">
+              <span class="mensagem-date">{{ mensagem.date }}</span>
+              <span class="mensagem-duration">{{ mensagem.duration }}</span>
+            </div>
+            
+            <h2>{{ mensagem.title }}</h2>
+            <p class="mensagem-preacher">Por {{ mensagem.preacher }}</p>
+            <p class="mensagem-description">{{ mensagem.description }}</p>
+            
+            <div class="mensagem-footer">
+              @if (mensagem.videoUrl) {
+                <a [href]="mensagem.videoUrl" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                  ▶️ Assistir Vídeo
+                </a>
+              }
+              @if (mensagem.audioUrl) {
+                <a [href]="mensagem.audioUrl" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+                  🎵 Ouvir Áudio
+                </a>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+

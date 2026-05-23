@@ -1,0 +1,29 @@
+<section class="recursos-page section">
+  <div class="container">
+    <div class="page-header">
+      <h1>Recursos</h1>
+      <p>Ferramentas e materiais para auxiliar seu estudo e crescimento espiritual</p>
+    </div>
+
+    <div class="recursos-grid">
+      @for (recurso of recursos(); track recurso.id) {
+        <article class="recurso-card card">
+          <div class="recurso-icon">{{ recurso.icon }}</div>
+          <div class="recurso-badge">{{ recurso.category }}</div>
+          
+          <div class="recurso-content">
+            <h2>{{ recurso.title }}</h2>
+            <p class="recurso-description">{{ recurso.description }}</p>
+          </div>
+
+          <div class="recurso-footer">
+            <a [href]="recurso.url" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              Acessar Recurso
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+

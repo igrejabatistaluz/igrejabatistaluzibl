@@ -1,0 +1,98 @@
+<header class="header" [class.scrolled]="isScrolled()">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Navegação principal">
+      <!-- Logo -->
+      <div class="logo">
+        <a routerLink="/" aria-label="Igreja Batista da Luz - Página inicial" (click)="closeMenu(); closeMoreMenu()">
+          <img 
+            src="assets/logo-circular-fundo-branco.png" 
+            alt="Logo Igreja Batista da Luz"
+            width="60"
+            height="60"
+          >
+          <span class="logo-text">Igreja Batista da Luz</span>
+        </a>
+      </div>
+
+      <!-- Menu Desktop -->
+      <ul class="nav-menu" [class.active]="isMenuOpen()">
+        <li>
+          <a (click)="scrollToSection('home')" role="button" tabindex="0" (keydown.enter)="scrollToSection('home')">
+            {{ navHome() }}
+          </a>
+        </li>
+        <li>
+          <a (click)="scrollToSection('sobre')" role="button" tabindex="0" (keydown.enter)="scrollToSection('sobre')">
+            {{ navAbout() }}
+          </a>
+        </li>
+        <li>
+          <a (click)="scrollToSection('horarios')" role="button" tabindex="0" (keydown.enter)="scrollToSection('horarios')">
+            {{ navSchedule() }}
+          </a>
+        </li>
+        <li>
+          <a (click)="scrollToSection('ministerios')" role="button" tabindex="0" (keydown.enter)="scrollToSection('ministerios')">
+            {{ navMinistries() }}
+          </a>
+        </li>
+        <li>
+          <a (click)="scrollToSection('eventos')" role="button" tabindex="0" (keydown.enter)="scrollToSection('eventos')">
+            {{ navEvents() }}
+          </a>
+        </li>
+        <li>
+          <a (click)="scrollToSection('contato')" role="button" tabindex="0" (keydown.enter)="scrollToSection('contato')">
+            {{ navContact() }}
+          </a>
+        </li>
+        <li class="more-menu-item" (mouseenter)="onMoreMenuHover()" (mouseleave)="onMoreMenuLeave()">
+          <a 
+            (click)="toggleMoreMenu()" 
+            role="button" 
+            tabindex="0" 
+            (keydown.enter)="toggleMoreMenu()"
+            [class.active]="isMoreMenuOpen()"
+          >
+            {{ navMore() }}
+            <span class="dropdown-arrow" [class.rotated]="isMoreMenuOpen()">▼</span>
+          </a>
+          <ul class="dropdown-menu" [class.active]="isMoreMenuOpen()">
+            @for (item of moreMenuItems(); track item.label) {
+              <li>
+                <a 
+                  [routerLink]="item.url" 
+                  class="dropdown-link"
+                  (click)="closeMoreMenu(); closeMenu()"
+                >
+                  <span class="dropdown-icon">{{ item.icon }}</span>
+                  <div class="dropdown-content">
+                    <span class="dropdown-label">{{ item.label }}</span>
+                    <span class="dropdown-description">{{ item.description }}</span>
+                  </div>
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
+        <li class="language-selector-item">
+          <app-language-selector></app-language-selector>
+        </li>
+      </ul>
+
+      <!-- Botão Menu Mobile -->
+      <button 
+        class="menu-toggle"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-label="Alternar menu de navegação"
+        aria-controls="nav-menu"
+      >
+        <span [class.active]="isMenuOpen()"></span>
+        <span [class.active]="isMenuOpen()"></span>
+        <span [class.active]="isMenuOpen()"></span>
+      </button>
+    </nav>
+  </div>
+</header>
+

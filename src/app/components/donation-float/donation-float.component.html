@@ -1,0 +1,111 @@
+<!-- Botão Flutuante de Doações -->
+<button 
+  class="donation-float-btn"
+  (click)="toggleModal()"
+  aria-label="Abrir informações de doação"
+  title="Abençoe a Casa de Deus"
+>
+  <div class="donation-icon">
+    <img 
+      src="assets/donation-heart-icon.png" 
+      alt="Doar"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+    >
+    <span class="donation-icon-fallback" style="display: none;">💝</span>
+  </div>
+  <span class="donation-pulse"></span>
+</button>
+
+<!-- Modal de Doações -->
+<div class="donation-modal" [class.active]="isOpen()" (click)="closeModal()">
+  <div class="donation-modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeModal()" aria-label="Fechar modal">
+      ✕
+    </button>
+
+    <div class="donation-header">
+      <div class="donation-icon-large">💝</div>
+      <h2>Abençoe a Casa de Deus</h2>
+      <p class="donation-subtitle">Sua oferta é uma bênção para o Reino</p>
+    </div>
+
+    <div class="verse-section">
+      <div class="verse-icon">📖</div>
+      <p class="verse-text">"{{ verse.text }}"</p>
+      <p class="verse-reference">{{ verse.reference }}</p>
+    </div>
+
+    <div class="donation-methods">
+      <h3>Formas de Doar</h3>
+
+      <!-- PIX -->
+      <div class="donation-method">
+        <div class="method-header">
+          <span class="method-icon">📱</span>
+          <h4>PIX</h4>
+        </div>
+        <div class="method-content">
+          <p class="method-name"><strong>Nome:</strong> {{ donationInfo.name }}</p>
+          
+          @for (pix of donationInfo.pix; track pix.key) {
+            <div class="pix-item">
+              <p class="method-label">{{ pix.label }}</p>
+              <div class="pix-key">
+                <code>{{ pix.key }}</code>
+              </div>
+              <button class="copy-btn" (click)="copyPix(pix.key)" [title]="'Copiar ' + pix.label">
+                <span>📋</span> Copiar {{ pix.label }}
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Transferência Bancária -->
+      <div class="donation-method">
+        <div class="method-header">
+          <span class="method-icon">🏦</span>
+          <h4>Transferência Bancária</h4>
+        </div>
+        <div class="method-content">
+          <div class="bank-info">
+            <div class="bank-field">
+              <p><strong>Banco:</strong> <span>{{ donationInfo.bank.name }}</span></p>
+              <button class="copy-field-btn" (click)="copyField(donationInfo.bank.name, 'Banco')" title="Copiar banco">
+                📋
+              </button>
+            </div>
+            <div class="bank-field">
+              <p><strong>Agência:</strong> <span>{{ donationInfo.bank.agency }}</span></p>
+              <button class="copy-field-btn" (click)="copyField(donationInfo.bank.agency, 'Agência')" title="Copiar agência">
+                📋
+              </button>
+            </div>
+            <div class="bank-field">
+              <p><strong>Conta:</strong> <span>{{ donationInfo.bank.account }}</span></p>
+              <button class="copy-field-btn" (click)="copyField(donationInfo.bank.account, 'Conta')" title="Copiar conta">
+                📋
+              </button>
+            </div>
+            <div class="bank-field">
+              <p><strong>Nome:</strong> <span>{{ donationInfo.name }}</span></p>
+              <button class="copy-field-btn" (click)="copyField(donationInfo.name, 'Nome')" title="Copiar nome">
+                📋
+              </button>
+            </div>
+          </div>
+          <button class="copy-btn" (click)="copyBankInfo()" title="Copiar todas as informações bancárias">
+            <span>📋</span> Copiar Todos os Dados
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="donation-footer">
+      <p class="donation-note">
+        💙 Sua generosidade ajuda a manter a obra de Deus e abençoa vidas!
+      </p>
+    </div>
+  </div>
+</div>
+

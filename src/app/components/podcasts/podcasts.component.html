@@ -1,0 +1,39 @@
+<section class="podcasts-page section">
+  <div class="container">
+    <div class="page-header">
+      <h1>Podcasts</h1>
+      <p>Mensagens e estudos em áudio para ouvir onde e quando quiser</p>
+    </div>
+
+    <div class="podcasts-grid">
+      @for (podcast of podcasts(); track podcast.id) {
+        <article class="podcast-card card">
+          <div class="podcast-thumbnail">
+            <img [src]="podcast.thumbnail" [alt]="podcast.title" loading="lazy">
+            <div class="play-overlay">
+              <span class="play-icon">▶️</span>
+            </div>
+          </div>
+          
+          <div class="podcast-content">
+            <div class="podcast-meta">
+              <span class="podcast-date">{{ podcast.date }}</span>
+              <span class="podcast-duration">{{ podcast.duration }}</span>
+            </div>
+            
+            <h2>{{ podcast.title }}</h2>
+            <p class="podcast-description">{{ podcast.description }}</p>
+            
+            <div class="podcast-footer">
+              <span class="podcast-platform">{{ podcast.platform }}</span>
+              <a [href]="podcast.url" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Ouvir Agora
+              </a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+

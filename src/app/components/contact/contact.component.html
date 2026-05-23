@@ -1,0 +1,87 @@
+<section class="contact section" id="contato">
+  <div class="container">
+    <div class="section-title">
+      <h2>{{ sectionTitle() }}</h2>
+      <p>{{ sectionSubtitle() }}</p>
+    </div>
+
+    <div class="contact-content">
+      <!-- Informações de Contato -->
+      <div class="contact-info">
+        <div class="info-card card">
+          <div class="info-icon">📍</div>
+          <h3>{{ addressLabel() }}</h3>
+          <p>{{ contactInfo().address }}</p>
+          <p>{{ contactInfo().city }}</p>
+        </div>
+
+        <div class="info-card card">
+          <div class="info-icon">📞</div>
+          <h3>{{ phoneLabel() }}</h3>
+          <p>
+            <a [href]="'tel:' + contactInfo().phone" [attr.aria-label]="'Ligar para ' + contactInfo().phone">
+              {{ contactInfo().phone }}
+            </a>
+          </p>
+        </div>
+
+        <div class="info-card card">
+          <div class="info-icon">✉️</div>
+          <h3>{{ emailLabel() }}</h3>
+          <p>
+            <a [href]="'mailto:' + contactInfo().email" [attr.aria-label]="'Enviar e-mail para ' + contactInfo().email">
+              {{ contactInfo().email }}
+            </a>
+          </p>
+        </div>
+
+        <div class="info-card card">
+          <div class="info-icon">💬</div>
+          <h3>{{ whatsappLabel() }}</h3>
+          <p>
+            <a 
+              [href]="getWhatsAppUrl()" 
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir conversa no WhatsApp"
+            >
+              {{ contactInfo().whatsapp }}
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Mapa -->
+      <div class="map-wrapper card">
+        <h3>{{ mapTitle() }}</h3>
+        <div class="map-container">
+          <iframe 
+            [src]="getGoogleMapsUrl()"
+            width="100%" 
+            height="400" 
+            style="border:0; border-radius: 12px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização da Igreja Batista da Luz"
+            aria-label="Mapa mostrando a localização da Igreja Batista da Luz"
+          ></iframe>
+          <div class="map-info">
+            <p>
+              <strong>📍 {{ contactInfo().address }}, {{ contactInfo().city }}</strong>
+            </p>
+            <a 
+              [href]="getGoogleMapsSearchUrl()"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="map-link"
+            >
+              {{ mapLink() }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

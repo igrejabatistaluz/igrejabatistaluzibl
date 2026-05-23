@@ -1,0 +1,34 @@
+<section class="ministries section" id="ministerios">
+  <div class="container">
+    <div class="section-title">
+      <h2>{{ sectionTitle() }}</h2>
+      <p>{{ sectionSubtitle() }}</p>
+    </div>
+
+    <div class="ministries-grid">
+      @for (ministry of ministries(); track ministry.title) {
+        <div class="card ministry-card">
+          <div class="ministry-icon" [style.background]="getGradient(ministry.color)">
+            {{ ministry.icon }}
+          </div>
+          <h3>{{ ministry.title }}</h3>
+          <p>{{ ministry.description }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="ministries-cta">
+      <p>{{ ctaText() }}</p>
+      <a 
+        class="btn btn-primary" 
+        (click)="scrollToContact()"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="scrollToContact()"
+      >
+        {{ ctaButton() }}
+      </a>
+    </div>
+  </div>
+</section>
+

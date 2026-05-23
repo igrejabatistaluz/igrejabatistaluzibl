@@ -1,0 +1,33 @@
+<section class="schedule section" id="horarios">
+  <div class="container">
+    <div class="section-title">
+      <h2>{{ sectionTitle() }}</h2>
+      <p>{{ sectionSubtitle() }}</p>
+    </div>
+
+    <div class="schedule-grid">
+      @for (schedule of schedules(); track schedule.title) {
+        <div class="card schedule-card">
+          <div class="schedule-header">
+            <div class="schedule-icon">{{ schedule.icon }}</div>
+            <div class="schedule-day-time">
+              <span class="day">{{ schedule.day }}</span>
+              <span class="time">{{ schedule.time }}</span>
+            </div>
+          </div>
+          <div class="schedule-content">
+            <h3>{{ schedule.title }}</h3>
+            <p>{{ schedule.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="schedule-note">
+      <p>
+        {{ scheduleNote() }}
+      </p>
+    </div>
+  </div>
+</section>
+
