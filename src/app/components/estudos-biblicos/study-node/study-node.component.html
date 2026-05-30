@@ -1,0 +1,64 @@
+<div class="study-node" [class.has-children]="hasChildren" [attr.data-depth]="depth">
+  <div
+    class="study-node__header"
+    [class.clickable]="hasChildren"
+    (click)="toggle()"
+    (keydown)="onKeydown($event)"
+    [attr.role]="hasChildren ? 'button' : null"
+    [attr.tabindex]="hasChildren ? 0 : null"
+    [attr.aria-expanded]="hasChildren ? isExpanded() : null"
+    [attr.aria-label]="node.title"
+  >
+    <span class="study-node__bullet" aria-hidden="true"></span>
+
+    <div class="study-node__body">
+      <h4 class="study-node__title">{{ node.title }}</h4>
+      @if (node.subtitle) {
+        <p class="study-node__subtitle">{{ node.subtitle }}</p>
+      }
+      @if (node.description && !hasChildren) {
+        <p class="study-node__description">{{ node.description }}</p>
+      }
+    </div>
+
+    <div class="study-node__actions">
+      @if (hasDownload) {
+        <a
+          class="study-node__download"
+          [href]="node.downloadUrl"
+          [attr.download]="node.downloadFilename || true"
+          target="_blank"
+          rel="noopener noreferrer"
+          (click)="stop($event)"
+          (keydown)="stop($event)"
+          [attr.aria-label]="downloadLabel() + ' - ' + node.title"
+          [title]="downloadLabel()"
+        >
+          <span aria-hidden="true">⬇</span>
+          <span class="study-node__download-text">{{ downloadLabel() }}</span>
+        </a>
+      }
+
+      @if (hasChildren) {
+        <span
+          class="study-node__chevron"
+          [class.rotated]="isExpanded()"
+          aria-hidden="true"
+        >▾</span>
+      }
+    </div>
+  </div>
+
+  @if (hasChildren) {
+    <div class="study-node__children" [@expandCollapse]="expandState">
+      @if (node.description) {
+        <p class="study-node__description study-node__description--nested">
+          {{ node.description }}
+        </p>
+      }
+      @for (child of node.children; track child.id) {
+        <app-study-node [node]="child" [depth]="depth + 1"></app-study-node>
+      }
+    </div>
+  }
+</div>

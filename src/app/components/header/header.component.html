@@ -37,6 +37,11 @@
           </a>
         </li>
         <li>
+          <a (click)="scrollToSection('celulas')" role="button" tabindex="0" (keydown.enter)="scrollToSection('celulas')">
+            {{ navCells() }}
+          </a>
+        </li>
+        <li>
           <a (click)="scrollToSection('eventos')" role="button" tabindex="0" (keydown.enter)="scrollToSection('eventos')">
             {{ navEvents() }}
           </a>

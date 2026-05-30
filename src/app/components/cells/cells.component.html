@@ -1,0 +1,42 @@
+<section class="cells section" id="celulas">
+  <div class="container">
+    <div class="section-title">
+      <h2>{{ sectionTitle() }}</h2>
+      <p>{{ sectionSubtitle() }}</p>
+    </div>
+
+    <div class="cells-grid">
+      @for (cell of cells(); track cell.name) {
+        <div class="card cell-card">
+          <div class="cell-header">
+            <div class="cell-icon">{{ cell.icon }}</div>
+            <div class="cell-day-time">
+              <span class="day">{{ cell.day }}</span>
+              <span class="time">{{ cell.time }}</span>
+            </div>
+          </div>
+          <div class="cell-content">
+            <h3>{{ cell.name }}</h3>
+            <p>{{ cell.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="cells-address">
+      <div class="address-icon">📍</div>
+      <div class="address-content">
+        <span class="address-label">{{ addressLabel() }}</span>
+        <p class="address-value">{{ addressValue() }}</p>
+        <a
+          [href]="mapUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-map"
+        >
+          {{ mapButton() }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

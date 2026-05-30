@@ -5,6 +5,7 @@ import { HeroComponent } from '../hero/hero.component';
 import { AboutComponent } from '../about/about.component';
 import { ScheduleComponent } from '../schedule/schedule.component';
 import { MinistriesComponent } from '../ministries/ministries.component';
+import { CellsComponent } from '../cells/cells.component';
 import { EventsComponent } from '../events/events.component';
 import { InstagramFeedComponent } from '../instagram-feed/instagram-feed.component';
 import { ContactComponent } from '../contact/contact.component';
@@ -18,6 +19,7 @@ import { ContactComponent } from '../contact/contact.component';
     AboutComponent,
     ScheduleComponent,
     MinistriesComponent,
+    CellsComponent,
     EventsComponent,
     InstagramFeedComponent,
     ContactComponent
@@ -27,6 +29,7 @@ import { ContactComponent } from '../contact/contact.component';
     <app-about></app-about>
     <app-schedule></app-schedule>
     <app-ministries></app-ministries>
+    <app-cells></app-cells>
     <!-- <app-events></app-events> -->
     <!-- <app-instagram-feed></app-instagram-feed> -->
     <app-contact></app-contact>

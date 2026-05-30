@@ -1,40 +1,109 @@
-<section class="estudos-biblicos-page section">
-  <div class="container">
-    <div class="page-header">
-      <h1>Estudos Bíblicos</h1>
-      <p>Materiais de estudo para aprofundar seu conhecimento da Palavra de Deus</p>
-    </div>
+<section class="estudos-page" aria-labelledby="estudos-title">
+  <div class="container estudos-container">
 
-    <div class="estudos-grid">
-      @for (estudo of estudos(); track estudo.id) {
-        <article class="estudo-card card">
-          <div class="estudo-badge">{{ estudo.category }}</div>
-          
-          <div class="estudo-content">
-            <h2>{{ estudo.title }}</h2>
-            <p class="estudo-description">{{ estudo.description }}</p>
-            
-            <div class="estudo-meta">
-              <span class="estudo-duration">⏱️ {{ estudo.duration }}</span>
-              <span class="estudo-author">✍️ {{ estudo.author }}</span>
+    <!-- Raiz do plano -->
+    <header class="plan-root" role="banner">
+      <div class="plan-root__icon" aria-hidden="true">
+        <span>📖</span>
+      </div>
+      <div class="plan-root__body">
+        <span class="plan-root__year">{{ plan.year }}</span>
+        <h1 id="estudos-title" class="plan-root__title">{{ planTitle() }}</h1>
+        <p class="plan-root__subtitle">{{ planSubtitle() }}</p>
+      </div>
+
+      <div class="plan-root__actions" role="group" aria-label="Controles da árvore">
+        <button
+          type="button"
+          class="ghost-btn"
+          (click)="expandAll()"
+          [attr.aria-label]="expandAllLabel()"
+        >
+          <span aria-hidden="true">＋</span>
+          <span class="ghost-btn__text">{{ expandAllLabel() }}</span>
+        </button>
+        <button
+          type="button"
+          class="ghost-btn"
+          (click)="collapseAll()"
+          [attr.aria-label]="collapseAllLabel()"
+        >
+          <span aria-hidden="true">−</span>
+          <span class="ghost-btn__text">{{ collapseAllLabel() }}</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Trilha de meses -->
+    <ol class="tree" role="tree" [attr.aria-label]="planTitle()">
+      @for (month of plan.months; track month.id) {
+        <li
+          class="tree__item"
+          [class.is-current]="isCurrent(month)"
+          [class.is-expanded]="isExpanded(month.id)"
+          [class.is-empty]="month.studies.length === 0"
+          role="treeitem"
+          [attr.aria-expanded]="isExpanded(month.id)"
+        >
+          <button
+            type="button"
+            class="month"
+            (click)="toggle(month.id)"
+            (keydown)="onMonthKeydown($event, month.id)"
+            [attr.aria-controls]="'panel-' + month.id"
+            [attr.aria-expanded]="isExpanded(month.id)"
+          >
+            <span class="month__index" aria-hidden="true">
+              {{ monthShort(month) }}
+            </span>
+
+            <span class="month__connector" aria-hidden="true"></span>
+
+            <span class="month__content">
+              <span class="month__title-row">
+                <span class="month__title">{{ monthName(month) }}</span>
+                @if (isCurrent(month)) {
+                  <span class="month__badge">{{ currentBadgeLabel() }}</span>
+                }
+              </span>
+              <span class="month__meta">
+                @if (month.studies.length > 0) {
+                  <span class="month__count">
+                    {{ studiesCountLabel(month.studies.length) }}
+                  </span>
+                } @else {
+                  <span class="month__count month__count--empty">
+                    {{ emptyMessage() }}
+                  </span>
+                }
+              </span>
+            </span>
+
+            @if (month.studies.length > 0) {
+              <span
+                class="month__chevron"
+                [class.rotated]="isExpanded(month.id)"
+                aria-hidden="true"
+              >▾</span>
+            }
+          </button>
+
+          @if (month.studies.length > 0) {
+            <div
+              class="month__panel"
+              [id]="'panel-' + month.id"
+              [@expandCollapse]="expandState(month.id)"
+              role="group"
+            >
+              <div class="month__panel-inner">
+                @for (study of month.studies; track study.id) {
+                  <app-study-node [node]="study"></app-study-node>
+                }
+              </div>
             </div>
-          </div>
-
-          <div class="estudo-footer">
-            @if (estudo.pdfUrl) {
-              <a [href]="estudo.pdfUrl" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-                📄 Baixar PDF
-              </a>
-            }
-            @if (estudo.videoUrl) {
-              <a [href]="estudo.videoUrl" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                ▶️ Assistir Vídeo
-              </a>
-            }
-          </div>
-        </article>
+          }
+        </li>
       }
-    </div>
+    </ol>
   </div>
 </section>
-

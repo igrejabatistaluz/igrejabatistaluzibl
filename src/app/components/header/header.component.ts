@@ -71,6 +71,7 @@ export class HeaderComponent {
   navAbout = computed(() => this.translationService.translate('nav.about'));
   navSchedule = computed(() => this.translationService.translate('nav.schedule'));
   navMinistries = computed(() => this.translationService.translate('nav.ministries'));
+  navCells = computed(() => this.translationService.translate('nav.cells'));
   navEvents = computed(() => this.translationService.translate('nav.events'));
   navContact = computed(() => this.translationService.translate('nav.contact'));
   navMore = computed(() => this.translationService.translate('nav.more'));

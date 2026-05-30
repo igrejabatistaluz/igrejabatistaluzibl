@@ -36,6 +36,13 @@ export class ScheduleComponent {
     },
     {
       dayKey: 'schedule.saturday',
+      time: '16:00',
+      titleKey: 'schedule.saturday.prayer.title',
+      descriptionKey: 'schedule.saturday.prayer.desc',
+      icon: '🕊️'
+    },
+    {
+      dayKey: 'schedule.saturday',
       time: '19:30',
       titleKey: 'schedule.saturday.title',
       descriptionKey: 'schedule.saturday.desc',
